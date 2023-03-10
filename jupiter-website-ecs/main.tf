@@ -66,3 +66,18 @@ module "alb" {
   vpc_id=module.vpc.vpc_id
   certificate_arn=module.acm.certificate_arn
   }
+
+
+# create ecs
+module "ecs" {
+  source = "../modules/ecs"
+  project_name=module.vpc.project_name
+  ecs_tasks_execution_arn=module.ecs_tasks_execution-role.ecs_tasks_execution_arn
+  container_image=var.container_image
+  region=module.vpc.region
+  private_app_subnet_az1_id=module.vpc.private_app_subnet_az1_id
+  private_app_subnet_az2_id=module.vpc.private_app_subnet_az2_id
+  ecs_security_group_id=module.security_group.ecs_security_group_id
+  aws_lb_target_group=module.alb.aws_lb_target_group
+
+}
