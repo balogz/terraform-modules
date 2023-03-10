@@ -81,3 +81,12 @@ module "ecs" {
   aws_lb_target_group=module.alb.aws_lb_target_group
 
 }
+
+
+# create asg
+module "asg" {
+  source = "../modules/asg"
+ecs_cluster=module.ecs.ecs_cluster
+ecs_service_name=module.ecs.ecs_service_name
+
+}
