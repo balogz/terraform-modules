@@ -10,3 +10,4 @@ private_data_subnet_az2_cidr="10.0.5.0/24"
 domain_name="balogz.com" # name of your regd domain name in aws
 alternative_name ="*.balogz.com"
 #container_image="651..." # enter the uri of your image
+record_name="www"

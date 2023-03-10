@@ -90,3 +90,17 @@ ecs_cluster=module.ecs.ecs_cluster
 ecs_service_name=module.ecs.ecs_service_name
 
 }
+
+# create route53
+module "route53" {
+  source = "../modules/route53"
+domain_name=module.acm.domain_name
+record_name=var.record_name
+application_load_balancer_dns_name=module.alb.application_load_balancer_dns_name
+application_load_balancer_zone_id=module.alb.application_load_balancer_zone_id
+}
+
+output "website_url" {
+  value = join("", ["http://", var.record_name, ".", var.domain_name])
+  
+}
