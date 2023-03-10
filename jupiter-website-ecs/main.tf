@@ -56,4 +56,13 @@ module "acm" {
   
   }
 
-
+# create alb
+module "alb" {
+  source = "../modules/alb"
+  project_name=module.vpc.project_name
+  alb_security_group_id=module.security_group.alb_security_group_id
+  public_subnet_az1_id=module.vpc.public_subnet_az1_cidr
+  public_subnet_az2_id=module.vpc.public_subnet_az2_cidr
+  vpc_id=module.vpc.vpc_id
+  certificate_arn=module.acm.certificate_arn
+  }
